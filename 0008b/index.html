@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html>
-<body>
-
-<h3>A demonstration of how to access a SELECT element</h3>
-
-<select id="mySelect" size="14">
-  <option>Apple</option>
-  <option>Pear</option>
-  <option>Banana</option>
-  <option>Orange</option>
-  <option>Banana</option>
-  <option>Orange</option>
-</select>
-
-<p>Click the button to get the number of option elements found in a drop-down list.</p>
-
-<button onclick="myFunction()">Try it</button>
-
-<p id="demo"></p>
-
+<body> 
+ 
 <script>
-function myFunction() {
-    var s = document.getElementById("mySelect")
-    var x = s.length;
-    s.selectedIndex = "3";
-    document.getElementById("demo").innerHTML = x;
+function blBook(myId) 
+{
+    this.selPage = document.createElement("SELECT");
+    this.selPage.setAttribute("id", myId);
+    this.selPage.setAttribute("size",14);
+    document.body.appendChild(this.selPage);
+
+    this.showMe = function()
+    { 
+    	for(var i=0; i<50; i++)
+        {
+        	this.addPage(i);
+        }
+    }
+    this.addPage = function(i)
+    { 
+    	var z = document.createElement("option");
+    	z.setAttribute("value", "page");
+        var s = "p" + i;
+    	var t = document.createTextNode(s);
+    	z.appendChild(t);
+    	this.selPage.appendChild(z);
+    }
+    this.v = "v0.0.1";
 }
+var myBook = new blBook("0008b");
+myBook.showMe();
+
 </script>
 
 </body>
