@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <body> 
@@ -5,30 +6,46 @@
 <script>
 function blBook(myId) 
 {
-    this.selPage = document.createElement("SELECT");
-    this.selPage.setAttribute("id", myId);
-    this.selPage.setAttribute("size",14);
-    document.body.appendChild(this.selPage);
-
+    this.allBooks 		= null;
+    this.selBook		= null;
+    this.createBooks = function()
+    {
+    	this.allBooks = document.createElement("SELECT");
+    	this.allBooks.setAttribute("id", myId); 
+ 		//  this.allBooks.onchange="ChangeCarList()";
+    	document.body.appendChild(this.allBooks);
+	}
+    this.createSelBook = function()
+    {
+    	this.selBook = document.createElement("SELECT");
+    	this.selBook.setAttribute("id", "selBook");  
+    	document.body.appendChild(this.selBook);
+	}
     this.showMe = function()
     { 
-    	for(var i=0; i<50; i++)
+    	if(!this.allBooks) this.createBooks();
+    	if(!this.selBook) this.createSelBook();
+    	for(var i=0; i<=150; i++)
         {
-        	this.addPage(i);
+        	this.addBook(i);
         }
     }
-    this.addPage = function(i)
+    this.addBook = function(i)
     { 
     	var z = document.createElement("option");
-    	z.setAttribute("value", "page");
-        var s = "p" + i;
+    	z.setAttribute("value", "blBook");
+        var s = "--BlEBooks--";
+        if(i>=1)
+        { 
+        	s = "b" + i;
+        }
     	var t = document.createTextNode(s);
     	z.appendChild(t);
-    	this.selPage.appendChild(z);
+    	this.allBooks.appendChild(z);
     }
-    this.v = "v0.0.1";
+    this.v = "v0.0.2";
 }
-var myBook = new blBook("0008b");
+var myBook = new blBook("BlEBooks");
 myBook.showMe();
 
 </script>
