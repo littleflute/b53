@@ -2,7 +2,9 @@
 <!DOCTYPE html>
 <html>
 <body> 
+ <button onclick="myBook.showMe2Div(this,'code');">+</button>
  
+	<div id="code" style="position:absolute;top:250px;left:150px;width:400px;"></div>
 <script>
 function blBook(myId) 
 {
@@ -71,7 +73,61 @@ function blBook(myId)
         }
     }
     this.allPages	= {};
-    this.v = "v0.0.3";
+    
+    this.onBtnTest	= function(o)
+    {
+    	var id = "x" + o.parentElement.id;
+      	var x = document.getElementById(id);
+    	if(x.style.display == "none")
+    	{
+    		x.style.display = "block";
+        	o.innerHTML = "-";
+       	 o.style.color = "red";
+    	}
+    	else
+    	{
+    		x.style.display = "none";
+        	o.innerHTML = "+";
+        	o.style.color = "green";
+    	}
+    };
+	this.bShowMe		= false;
+	this.showMe2Div = function(btn,divId)
+	{
+		var x;
+		var h = document.getElementById(divId);
+		if(!h) return; 
+
+		this.bShowMe = !this.bShowMe;
+		btn.innerHTML = this.bShowMe?"-":"+";
+		if(!this.bShowMe) {h.innerHTML = ""; return;}
+
+        var nID = 0;
+		for(x in this)
+		{
+        	nID++;
+            
+			var d = document.createElement("div");
+			d.id = nID;
+            d.onFun = this.onBtnTest;
+            d.innerHTML = x;
+            var bt= "<button onclick='this.parentElement.onFun(this)'>";
+            bt += "+</button>";
+			d.innerHTML += bt;
+            d.style.border = "solid 1px blue";
+			d.style.color = "red";
+			h.appendChild(d); 
+            
+			var v = document.createElement("div");
+            v.id = "x" + nID;
+			v.innerHTML = this[x];
+			v.style.border = "solid 1px green";
+			v.style.color = "black";
+            v.style.display = "none";
+			d.appendChild(v); 
+		} 
+	}
+    this.v = "v0.0.5";
 }
 var myBook = new blBook("BlEBooks");
   
