@@ -12,28 +12,27 @@ function blBook(myId)
     {
     	this.allBooks = document.createElement("SELECT");
     	this.allBooks.setAttribute("id", myId); 
- 		//  this.allBooks.onchange="ChangeCarList()";
+ 		this.allBooks.setAttribute("onchange","myBook.selABook()");//"ChangeAllBooksList()");
     	document.body.appendChild(this.allBooks);
 	}
     this.createSelBook = function()
     {
     	this.selBook = document.createElement("SELECT");
-    	this.selBook.setAttribute("id", "selBook");  
+    	this.selBook.setAttribute("id", "selBook"); 
+        this.selBook.setAttribute("size","10");
     	document.body.appendChild(this.selBook);
 	}
     this.showMe = function()
     { 
     	if(!this.allBooks) this.createBooks();
     	if(!this.selBook) this.createSelBook();
-    	for(var i=0; i<=150; i++)
-        {
-        	this.addBook(i);
-        }
+    	
+        this.init();
     }
     this.addBook = function(i)
     { 
     	var z = document.createElement("option");
-    	z.setAttribute("value", "blBook");
+    	z.setAttribute("value", "b"+i);
         var s = "--BlEBooks--";
         if(i>=1)
         { 
@@ -42,12 +41,41 @@ function blBook(myId)
     	var t = document.createTextNode(s);
     	z.appendChild(t);
     	this.allBooks.appendChild(z);
+    } 
+    this.selABook = function()
+    { 
+    	var a = document.getElementById("BlEBooks"); 
+    	var b = document.getElementById("selBook");
+   
+    	var s = a.options[a.selectedIndex].value;
+     	while (b.options.length) {
+        	b.remove(0);
+    	}
+    	var pages = this.allPages[s];
+    	if (pages) {
+        	var i;
+        	for (i = 0; i < pages.length; i++) {
+            	var p = new Option(pages[i], i);
+            	b.options.add(p);
+        	}
+    	}
+    } 
+    this.init = function()
+    { 
+    	this.allPages['b1'] = ['p1', 'p2', 'p3'];
+		this.allPages['b2'] = ['DSC_001', 'DSC_002', 'DSC_003', 'DSC_004'];
+		this.allPages['b3'] = ['M6', 'X5', 'Z3'];
+        for(var i=0; i<=150; i++)
+        {
+        	this.addBook(i);
+        }
     }
-    this.v = "v0.0.2";
+    this.allPages	= {};
+    this.v = "v0.0.3";
 }
 var myBook = new blBook("BlEBooks");
-myBook.showMe();
-
+  
+myBook.showMe(); 
 </script>
 
 </body>
