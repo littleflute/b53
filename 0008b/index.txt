@@ -1,0 +1,20 @@
+Cover image for
+Personal Author:
+Goodliffe, Pete.
+Title All:
+Becoming a better programmer : a handbook for people who care about code / Pete Goodliffe.
+Author:
+Goodliffe, Pete.
+Local Call Number:
+005.1
+ISBN:
+9781491905531
+Edition:
+1st ed.
+Publication Information:
+Sebastopol, California : O'Reilly, 2015.
+Physical Description:
+xviii, 341 pages : illustrations ; 24 cm.
+Subject Term:
+Computer programming.
+Holds: 0
